@@ -58,16 +58,14 @@ This project is licensed under the [Apache 2.0](LICENSE).
 
 
 
-
 # Home Visits API
-
 
 
 ## Installation
 
 INSTALL POSTGRES and ensure it's running on port 5432
 
-** Option 1 **
+## Option 1
 
 - clone to your local machine and cd into the generated directory
 - `mix deps.get`
@@ -75,14 +73,15 @@ INSTALL POSTGRES and ensure it's running on port 5432
 - `mix ecto.migrate`
 - `iex -S mix`
 
-** Option 2 **
+
+## Option 2
 ```
 defp deps do
   [
     {:phoenix, "~> 1.7.2"},
     {:jason, "~> 1.2"},
     {:plug_cowboy, "~> 2.5"},
-    {:dep_from_git, git: "https://github.com/cammcad/HomeVisitsAPI.git", tag: "0.1.0"}
+    {:dep_from_git, git: "https://github.com/cammcad/HomeVisitsAPI.git"}
   ]
 end
 ```
