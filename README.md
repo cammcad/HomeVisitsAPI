@@ -76,7 +76,7 @@ INSTALL POSTGRES and ensure it's running on port 5432
 - `iex -S mix`
 
 ** Option 2 **
-
+```
 defp deps do
   [
     {:phoenix, "~> 1.7.2"},
@@ -85,3 +85,4 @@ defp deps do
     {:dep_from_git, git: "https://github.com/cammcad/HomeVisitsAPI.git", tag: "0.1.0"}
   ]
 end
+```
