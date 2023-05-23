@@ -142,6 +142,10 @@ defmodule HomeVisitsApi.DefaultImpl.DataStore do
        when minutes < req.minutes + req.minutes * @fee do
     {:error, :insufficient_minutes}
   end
+  
+  defp validate_visit_request(nil, _req) do
+    {:error, :unknown_account}
+  end
 
   defp validate_visit_request(_, _req) do
     {:error, :failed_to_request_visit}

@@ -60,6 +60,8 @@ This project is licensed under the [Apache 2.0](LICENSE).
 
 # Home Visits API
 
+![Sequence Diagram](diagrams/HomeVisitsApi_diagram.png)
+
 
 ## Installation
 

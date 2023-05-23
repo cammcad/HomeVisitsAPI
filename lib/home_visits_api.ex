@@ -10,7 +10,6 @@ defmodule HomeVisitsApi do
   alias HomeVisitsApi.DefaultImpl.Papa
   alias HomeVisitsApi.DefaultImpl.PapaCare
   alias HomeVisitsApi.DefaultImpl.PapaPal
-  alias HomeVisitsApi.DefaultImpl.Faucet
 
   @spec create_user(User.t()) ::
           {:ok, User.t()}
@@ -24,6 +23,7 @@ defmodule HomeVisitsApi do
           {:ok, :request_pending}
           | {:error, :not_authorized}
           | {:error, :insufficent_minutes}
+          | {:error, :unknown_account}
           | {:error, :failed_to_request_visit}
   def request_visit(request), do: PapaCare.request_visit(request)
 
@@ -35,9 +35,9 @@ defmodule HomeVisitsApi do
           {:ok, [Visit.t()]} | {:ok, []} | {:error, :failed_to_fetch_visits}
   def fetch_visits(), do: Papa.fetch_visits()
 
-  @spec start_the_flow(String.t()) ::
-          {:ok, :credited} | {:error, :tap_already_enabled}
-  def start_the_flow(email) do
-    Faucet.start_the_flow(email)
-  end
+  # @spec start_the_flow(String.t()) ::
+  #         {:ok, :credited} | {:error, :tap_already_enabled}
+  # def start_the_flow(email) do
+  #   Faucet.start_the_flow(email)
+  # end
 end
