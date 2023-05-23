@@ -17,7 +17,8 @@ defmodule HomeVisitsApi.DefaultImpl.DataStore do
         {:error, :email_already_registered}
 
       [] ->
-        usr_default_mins = user |> Map.put_new(:minutes, 60.0) # to be replaced by faucet
+        # to be replaced by faucet
+        usr_default_mins = user |> Map.put_new(:minutes, 60.0)
 
         %Schema.User{}
         |> Changeset.cast(usr_default_mins, [:first_name, :last_name, :email, :minutes, :roles])
@@ -84,15 +85,18 @@ defmodule HomeVisitsApi.DefaultImpl.DataStore do
         {:ok, visit_update} =
           visit
           |> Changeset.change()
-          |> Changeset.put_change(:pal_id, %{pal_id: pal.uuid})
-          |> Changeset.put_assoc(:pal, %{
-            uuid: pal.uuid,
-            first_name: pal_credited.first_name,
-            last_name: pal_credited.last_name,
-            email: pal_credited.email,
-            minutes: pal_credited.minutes,
-            roles: pal_credited.roles
-          })
+          |> Changeset.put_assoc(
+            :pal,
+            %{
+              uuid: pal.uuid,
+              first_name: pal_credited.first_name,
+              last_name: pal_credited.last_name,
+              email: pal_credited.email,
+              minutes: pal_credited.minutes,
+              roles: pal_credited.roles
+            },
+            on_replace: :update
+          )
           |> Changeset.put_assoc(:member, %{
             uuid: visit.member.uuid,
             minutes: member_debited.minutes
@@ -142,7 +146,7 @@ defmodule HomeVisitsApi.DefaultImpl.DataStore do
        when minutes < req.minutes + req.minutes * @fee do
     {:error, :insufficient_minutes}
   end
-  
+
   defp validate_visit_request(nil, _req) do
     {:error, :unknown_account}
   end
@@ -153,7 +157,7 @@ defmodule HomeVisitsApi.DefaultImpl.DataStore do
 
   defp handle_visit_request_results({:ok, _visit}), do: {:ok, :request_pending}
 
-  defp handle_visit_request_results({:error, %Changeset{errors: errors}}) do
+  defp handle_visit_request_results({:error, _}) do
     {:error, :failed_to_request_visit}
   end
 
@@ -171,7 +175,7 @@ defmodule HomeVisitsApi.DefaultImpl.DataStore do
      }}
   end
 
-  defp handle_user_results({:error, %Changeset{errors: errors}}) do
+  defp handle_user_results({:error, _}) do
     {:error, :failed_to_create_user}
   end
 end
