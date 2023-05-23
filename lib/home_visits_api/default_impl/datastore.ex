@@ -82,7 +82,7 @@ defmodule HomeVisitsApi.DefaultImpl.DataStore do
         member_debited = %{visit.member | minutes: visit.member.minutes - visit_amount}
         pal_credited = %{pal | minutes: pal.minutes + visit_amount}
 
-        {:ok, visit_update} =
+        visit_update =
           visit
           |> Changeset.change()
           |> Changeset.put_assoc(
@@ -101,7 +101,7 @@ defmodule HomeVisitsApi.DefaultImpl.DataStore do
             uuid: visit.member.uuid,
             minutes: member_debited.minutes
           })
-          |> Repo.update()
+          |> Repo.update!()
 
         %Schema.Transaction{
           visit_id: visit_update.uuid,
