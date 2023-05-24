@@ -79,27 +79,20 @@ defmodule HomeVisitsApi.DefaultImpl.DataStore do
 
         visit_fee = visit.minutes * @fee
         visit_amount = visit.minutes + visit_fee
-        member_debited = %{visit.member | minutes: visit.member.minutes - visit_amount}
-        pal_credited = %{pal | minutes: pal.minutes + visit_amount}
+
+        pal_changeset =
+          pal
+          |> Ecto.Changeset.change()
+          |> Ecto.Changeset.put_change(:minutes, pal.minutes + visit_amount)
 
         visit_update =
           visit
           |> Changeset.change()
-          |> Changeset.put_assoc(
-            :pal,
-            %{
-              uuid: pal.uuid,
-              first_name: pal_credited.first_name,
-              last_name: pal_credited.last_name,
-              email: pal_credited.email,
-              minutes: pal_credited.minutes,
-              roles: pal_credited.roles
-            },
-            on_replace: :update
-          )
+          |> Changeset.put_assoc(:pal, pal_changeset)
+          |> Changeset.put_change(:pal_id, pal.uuid)
           |> Changeset.put_assoc(:member, %{
             uuid: visit.member.uuid,
-            minutes: member_debited.minutes
+            minutes: visit.member.minutes - visit_amount
           })
           |> Repo.update!()
 
