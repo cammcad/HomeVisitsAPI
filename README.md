@@ -30,32 +30,24 @@ This project aims to encapsulate the main goals as outlined in the papa challeng
 
 These instructions will help you set up and run the project on your local machine. Follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/project-name.git`
+1. Clone the repository: `git clone https://github.com/cammcad/HomeVisitsAPI.git`
 2. Install dependencies: `cd project-name && mix deps.get`
 3. Configure the project: `the project depends heavily on ecto and postgesql, standard vanilla config`
 4. Make sure postgresql is installed and running on port 5432
 5. Run the migration to create the schema: `mix ecto.migrate`
 6. Run the application: navigate to the root and run - `iex -S mix`
 
-## API Documentation
-
-Document the endpoints and provide details about how to interact with the API. Include any authentication requirements, request/response formats, and example API calls.
-
 ## Dependencies
 
-List the main dependencies used in your project along with their purpose. For example:
+Main dependencies used:
 
 - [Postges](https://www.postgresql.org/): Relational database.
 - [Ecto](https://hexdocs.pm/ecto): A database wrapper and query generator for Elixir.
 
-## Contributing
-
-Explain how others can contribute to your project. Provide guidelines for bug reports, feature requests, and code contributions. Include information about your code style, pull request process, and any specific guidelines you want contributors to follow.
 
 ## License
 
 This project is licensed under the [Apache 2.0](LICENSE).
-
 
 
 # Home Visits API
