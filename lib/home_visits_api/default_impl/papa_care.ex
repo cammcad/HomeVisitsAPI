@@ -6,5 +6,9 @@ defmodule HomeVisitsApi.DefaultImpl.PapaCare do
 
   @spec request_visit(Request.t()) ::
           {:ok, :request_pending} | {:error, :not_authorized} | {:error, :insufficent_minutes}
-  def request_visit(request), do: DataStore.request_visit(request)
+  def request_visit(request) do
+    request
+    |> Map.from_struct()
+    |> DataStore.request_visit()
+  end
 end

@@ -18,7 +18,7 @@ defmodule HomeVisitsApi.DefaultImpl.DataStore do
 
       [] ->
         # to be replaced by faucet
-        usr_default_mins = user |> Map.put_new(:minutes, 60.0)
+        usr_default_mins = user |> Map.put(:minutes, 60.0)
 
         %Schema.User{}
         |> Changeset.cast(usr_default_mins, [:first_name, :last_name, :email, :minutes, :roles])

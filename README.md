@@ -79,3 +79,9 @@ defp deps do
   ]
 end
 ```
+
+# Running Tests
+
+To run the tests, make sure the test schema is created and then run the test
+- `mix ecto_setup`
+- `mix test`

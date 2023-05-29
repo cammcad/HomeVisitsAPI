@@ -6,5 +6,8 @@ defmodule HomeVisitsApi.DefaultImpl.PapaPal do
 
   @spec fulfill_visit(Fulfill.t()) ::
           {:ok, :fulfilled} | {:error, :not_authorized} | {:error, :failed_to_fulfill}
-  def fulfill_visit(fulfillment), do: DataStore.fulfill_visit(fulfillment)
+  def fulfill_visit(fulfillment) do
+    fulfillment
+    |> DataStore.fulfill_visit()
+  end
 end
