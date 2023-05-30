@@ -1,0 +1,45 @@
+Hello! This coding challenge is an opportunity for you to show us your basic engineering skills and your
+facility with various technologies. In addition, the choices you make and document for us will allow you to
+show us how you think and put your engineering values on display.
+
+How Papa Works
+---------------
+We'd like you to build an application that uses a few of the concepts of our company, which works like this:
+● Visits are at the heart of Papa. A visit is a meeting requested by members of Papa (typically Senior
+Citizens), whose health plans allow them a certain number of visit hours per year.
+● Visits are then accepted by our Papa pals, who go to the member's house to perform various tasks,
+generally including providing companionship and conversation.
+● Pals are then compensated for fulfilling those visits.
+
+Assignment
+--------------
+In order to simplify our system and give you an opportunity to show various skills, we're going to change the
+rules of our system a bit. Build a "Home Visit Service" application with the following core functionality:
+● Users must be able to create an account. They can perform either or both of two roles: a member
+(who requests visits) and a pal (who fulfills visits).
+● As a member, a user can request visits.
+● When a user fulfills a visit, the minutes of visit's duration are debited from the visit requester's
+account and credited to the pal's account, minus a 15% overhead fee.
+● If a member's account has a balance of 0 minutes, they cannot request any more visits until they
+fulfill visits themselves.
+
+This application may be command-line or API-only. It does not require a graphical UI or web interface.
+
+Data Model
+
+You may use/extend these models or create new ones:
+
+User         Visit     Transaction
+---------    -------   ------------
+first_name   member    member
+last_name    date      pal
+email        minutes   visit
+             tasks
+
+
+Notes
+● We recommend you use Elixir for this application, but it is not required
+● Include instructions on how to run the application and tests
+● Document any assumptions you made when writing the application
+● Document all design decisions and technology choices
+● When you're finished, push your solution to Github and share the link with us
